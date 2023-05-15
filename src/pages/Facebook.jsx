@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
-import { Link, TextField } from '@mui/material'
-import { Container, display } from '@mui/system'
+import { TextField } from '@mui/material'
+import { Container } from '@mui/system'
 import React from 'react'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,11 +10,13 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useFormik } from "formik"
-import { Validation } from './validation';
+import { Validation } from '../validation';
 
 
 
 function Facebook() {
+
+
     const handleSubmit = (values, actions) => {
         console.log(values);
         actions.resetForm()
@@ -33,17 +35,23 @@ function Facebook() {
 
         },
         onSubmit: handleSubmit,
-        validationSchema: Validation,
+        validationSchema: Validation,  
+       
     })
+     
+    const signClick=()=>{
+
+    }
 
 
 
     return (
         <>
-            <Link to="/">
+         
             <h1 style={{ textAlign: 'center', fontSize: '50px', marginTop: '30px', color: '#1877f2', fontFamily: 'sans-serif' }}>facebook</h1>
-            </Link>
-            <div style={{ margin: '0 auto', width: '425px', borderRadius: '8px', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
+           
+            <div style={{ margin: '0 auto', width: '425px', borderRadius: '8px', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        }}>
                 <h2 style={{ textAlign: 'center', paddingTop: '10px', fontFamily: 'sans-serif' }}>Create a new account</h2>
                 <p style={{ color: 'gray', fontSize: '17px', textAlign: 'center', marginTop: '-10px', fontFamily: 'sans-serif' }}>It's quick and easy.</p>
                 <hr />
@@ -63,7 +71,7 @@ function Facebook() {
                                 size="small" />
 
                             {formik.errors.name && formik.touched.name &&(
-                            <p style={{ color: "red",position:'absolute',left:'27%' }}>{formik.errors.name}</p>)}
+                            <p style={{ color: "red",position:'absolute',left:'31%' }}>{formik.errors.name}</p>)}
 
 
                             <TextField
@@ -78,7 +86,7 @@ function Facebook() {
                                 id="outlined-size-small"
                                 onBlur={formik.handleBlur}
                                 size="small" />
-                                {formik.errors.name && formik.touched.name &&(
+                                {formik.errors.lastname && formik.touched.lastname &&(
                             <p style={{ color: "red",position:'absolute',right:'32%' }}>{formik.errors.lastname}</p>)}
 
 
@@ -94,7 +102,7 @@ function Facebook() {
                             id="outlined-size-small"
                             onBlur={formik.handleBlur}
                             size="small" />
-                        {formik.errors.name && formik.touched.name &&(<p style={{ color: "red" }}>{formik.errors.phonenum}</p>)}
+                        {formik.errors.phonenum && formik.touched.phonenum &&(<p  style={{ color: "red",position:'absolute',left:'35%',top:'35%' }}>{formik.errors.phonenum}</p>)}
 
                         <TextField
                             className={formik.errors.password && formik.touched.password ? "input-error" : ""}
@@ -107,7 +115,7 @@ function Facebook() {
                             id="outlined-size-small"
                             onBlur={formik.handleBlur}
                             size="small" />
-                            {formik.errors.name && formik.touched.name &&(
+                            {formik.errors.password && formik.touched.password &&(
                         <p style={{ color: "red" }}>{formik.errors.password}</p>)}
 
                         <div style={{ marginTop: '15px' }}>
@@ -214,7 +222,7 @@ function Facebook() {
                             </div>
                         </div>
 
-                        <div style={{ marginTop: '15px' }}>
+                        <div >
                             <FormControl>
                                 <small>Gender+</small>
                                 <RadioGroup
@@ -232,7 +240,7 @@ function Facebook() {
                                         control={<Radio />}
                                         onBlur={formik.handleBlur}
                                         label="Female" />
-{formik.errors.name && formik.touched.name &&(
+{formik.errors.female && formik.touched.female &&(
                                     <p style={{ color: "red" }}>{formik.errors.female}</p>)}
                                     <FormControlLabel
                                         className={formik.errors.male && formik.touched.male ? "input-error" : ""}
@@ -244,7 +252,7 @@ function Facebook() {
                                         control={<Radio />}
                                         onBlur={formik.handleBlur}
                                         label="Male" />
-                                        {formik.errors.name && formik.touched.name &&(
+                                        {formik.errors.male && formik.touched.male &&(
                                     <p style={{ color: "red" }}>{formik.errors.male}</p>)}
 
 
@@ -256,7 +264,7 @@ function Facebook() {
                         <p style={{ color: 'gray', fontFamily: 'sans-serif', fontSize: '11px' }}>By clicking Sign Up, you agree to our <a style={{ textDecoration: 'none' }} href="#">Terms, Privacy Policy</a> and <a style={{ textDecoration: 'none' }} href="#">Cookies Policy.</a> You may receive SMS Notifications from us and can opt out any time.</p>
                     </form>
 
-                    <Button variant="text" style={{ fontWeight: "700", backgroundColor: '#00a400', color: 'white', borderRadius: '10px', border: 'none', width: '35%', margin: '30px auto', display: 'block' }}>Sign Up</Button>
+                    <Button  disabled={Object.keys(formik.errors).length>0} onClick={signClick} variant="text" style={{ fontWeight: "700", backgroundColor: '#00a400', color: 'white', borderRadius: '10px', border: 'none', width: '35%', margin: '30px auto', display: 'block' }}>Sign Up</Button>
 
 
                 </Container>

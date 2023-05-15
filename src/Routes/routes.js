@@ -1,15 +1,20 @@
-import Facebook from "../Facebook";
-import Root from "../Root";
+import Facebook from "../pages/Facebook";
+import SignIn from "../pages/SignIn";
+import MainRoot from "../MainRoot";
 
 export const ROUTES = [
     {
         path: '/',
-        element: <Root />,
+        element: <MainRoot/>,
         children: [
             {
-                path: '',
-                element: <Facebook />   
+                path: 'facebook',
+                element: <Facebook />
 
+            },
+            {
+                path: '',
+                element: <SignIn />
             }
         ]
     }
